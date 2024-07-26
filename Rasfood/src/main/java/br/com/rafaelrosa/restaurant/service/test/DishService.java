@@ -4,8 +4,6 @@ import br.com.rafaelrosa.restaurant.dao.DishDao;
 import br.com.rafaelrosa.restaurant.entity.Dish;
 import br.com.rafaelrosa.restaurant.util.JPAutil;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 import java.math.BigDecimal;
 
@@ -23,7 +21,7 @@ public class DishService {
         DishDao dishDao = new DishDao(entityManager);
 
         entityManager.getTransaction().begin();
-        dishDao.insert(beef);
+        dishDao.create(beef);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
