@@ -25,12 +25,11 @@ public class MenuItem {
     public MenuItem() {
     }
 
-    public MenuItem(String name, String description, Boolean available, BigDecimal price, LocalDateTime registrationDate, Category category) {
+    public MenuItem(String name, String description, Boolean available, BigDecimal price, Category category) {
         this.name = name;
         this.description = description;
         this.available = available;
         this.price = price;
-        this.registrationDate = registrationDate;
         this.category = category;
     }
 

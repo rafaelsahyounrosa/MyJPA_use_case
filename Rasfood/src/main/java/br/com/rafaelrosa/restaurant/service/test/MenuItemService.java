@@ -54,8 +54,9 @@ public class MenuItemService {
         menuItemDao.create(carbonara);
         entityManager.flush();
 
-        System.out.println("Prato 1: " + menuItemDao.find(1));
-        System.out.println("Prato 2: " + menuItemDao.find(2));
+//        System.out.println("Prato 1: " + menuItemDao.findById(1));
+//        System.out.println("Prato 2: " + menuItemDao.findById(2));
+        menuItemDao.findAll().forEach(line -> System.out.println("Prato: "+line));
 
         entityManager.close();
     }

@@ -3,6 +3,8 @@ package br.com.rafaelrosa.restaurant.dao;
 import br.com.rafaelrosa.restaurant.entity.Category;
 import jakarta.persistence.EntityManager;
 
+import java.util.List;
+
 public class CategoryDao {
 
     private EntityManager entityManager;
@@ -25,5 +27,10 @@ public class CategoryDao {
 
     public void delete(final Category category) {
         this.entityManager.remove(category);
+    }
+
+    public List<Category> findAll() {
+        String query = "SELECT c FROM Category c";
+        return this.entityManager.createQuery(query, Category.class).getResultList();
     }
 }
