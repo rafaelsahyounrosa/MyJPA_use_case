@@ -1,6 +1,8 @@
 package br.com.rafaelrosa.restaurant.service.test;
 
+import br.com.rafaelrosa.restaurant.dao.DishDao;
 import br.com.rafaelrosa.restaurant.entity.Dish;
+import br.com.rafaelrosa.restaurant.util.JPAutil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -17,10 +19,11 @@ public class DishService {
         beef.setPrice(BigDecimal.valueOf(100.50));
         beef.setAvailable(true);
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("rasFood");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = JPAutil.getEntityManagerRasfood();
+        DishDao dishDao = new DishDao(entityManager);
+
         entityManager.getTransaction().begin();
-        entityManager.persist(beef);
+        dishDao.insert(beef);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
