@@ -17,7 +17,9 @@ public class MenuService {
         DataUtil.createDishes(entityManager);
 
         MenuItemDao menuDao = new MenuItemDao(entityManager);
-        System.out.println("Menu items by price: " + menuDao.findByPrice(BigDecimal.valueOf(20.0)));
+//        System.out.println("Menu items by price: " + menuDao.findByPrice(BigDecimal.valueOf(20.0)));
+
+        System.out.println("Menu item by name: " + menuDao.findByName("salmon"));
 
         entityManager.close();
     }
