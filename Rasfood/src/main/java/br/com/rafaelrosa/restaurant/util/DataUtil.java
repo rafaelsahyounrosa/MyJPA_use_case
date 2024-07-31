@@ -58,7 +58,7 @@ public class DataUtil {
         menuItemDao.create(barbecue);
         menuItemDao.create(moqueca);
 
-        entityManager.getTransaction().commit();
+        entityManager.flush();
         entityManager.clear();
 
 
