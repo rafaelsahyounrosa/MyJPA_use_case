@@ -21,13 +21,14 @@ public class Order {
     @ManyToOne
     private Customer customer;
 
-    @ManyToMany
-    @JoinTable(
-            name = "orders_menu_item",
-            joinColumns = @JoinColumn(name = "orders_id"),
-            inverseJoinColumns = @JoinColumn(name = "menu_item_id")
-    )
-    private List<MenuItem> menuItemList;
+    @OneToMany
+//    Changing implementation strategy: OrdersMenuItem entity
+//    @JoinTable(
+//            name = "orders_menu_item",
+//            joinColumns = @JoinColumn(name = "orders_id"),
+//            inverseJoinColumns = @JoinColumn(name = "menu_item_id")
+//    )
+    private List<OrdersMenuItem> ordersMenuItems;
 
     public Order(Customer customer) {
         this.customer = customer;

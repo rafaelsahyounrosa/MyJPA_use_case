@@ -23,8 +23,8 @@ public class MenuItem {
     @ManyToOne
     private Category category;
 
-    @ManyToMany(mappedBy = "menuItemList")
-    private List<Order> orders;
+//    @ManyToMany(mappedBy = "menuItemList")
+//    private List<Order> orders;
 
     public MenuItem() {
     }
