@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,20 +22,25 @@ public class Order {
     @ManyToOne
     private Customer customer;
 
-    @OneToMany
+    @OneToMany(mappedBy = "order")
 //    Changing implementation strategy: OrdersMenuItem entity
 //    @JoinTable(
 //            name = "orders_menu_item",
 //            joinColumns = @JoinColumn(name = "orders_id"),
 //            inverseJoinColumns = @JoinColumn(name = "menu_item_id")
 //    )
-    private List<OrdersMenuItem> ordersMenuItems;
+    private List<OrdersMenuItem> ordersMenuItems = new ArrayList<>();
 
     public Order(Customer customer) {
         this.customer = customer;
     }
 
     public Order() {
+    }
+
+    public void addOrdersMenuItem(OrdersMenuItem ordersMenuItem) {
+        ordersMenuItem.setOrder(this);
+        this.ordersMenuItems.add(ordersMenuItem);
     }
 
     public Integer getId() {

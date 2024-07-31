@@ -30,6 +30,7 @@ public class OrdersMenuItem {
         this.order = order;
         this.menuItem = menuItem;
         this.quantity = quantity;
+        this.price = menuItem.getPrice();
     }
 
     public Integer getId() {
