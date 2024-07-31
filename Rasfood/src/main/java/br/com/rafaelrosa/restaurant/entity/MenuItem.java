@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "menu_item")
@@ -21,6 +22,9 @@ public class MenuItem {
 
     @ManyToOne
     private Category category;
+
+    @ManyToMany(mappedBy = "menuItemList")
+    private List<Order> orders;
 
     public MenuItem() {
     }

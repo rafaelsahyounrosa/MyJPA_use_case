@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -20,9 +21,15 @@ public class Order {
     @ManyToOne
     private Customer customer;
 
-    public Order(BigDecimal total, LocalDateTime date, Customer customer) {
-        this.total = total;
-        this.date = date;
+    @ManyToMany
+    @JoinTable(
+            name = "orders_menu_item",
+            joinColumns = @JoinColumn(name = "orders_id"),
+            inverseJoinColumns = @JoinColumn(name = "menu_item_id")
+    )
+    private List<MenuItem> menuItemList;
+
+    public Order(Customer customer) {
         this.customer = customer;
     }
 
