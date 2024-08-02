@@ -36,7 +36,7 @@ public class OrderService {
         orderDao.create(order);
 
         System.out.println(order);
-        orderDao.findBestSellersTop3().forEach(item -> System.out.println("Item: "+item[0]+"\t- Quantity: "+item[1]));
+        System.out.println(orderDao.findBestSellersTop3());
 
         em.getTransaction().commit();
         em.close();

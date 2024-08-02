@@ -1,7 +1,7 @@
 package br.com.rafaelrosa.restaurant.dao;
 
-import br.com.rafaelrosa.restaurant.entity.Customer;
 import br.com.rafaelrosa.restaurant.entity.Order;
+import br.com.rafaelrosa.restaurant.vo.BestSellerVo;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -35,14 +35,15 @@ public class OrderDao {
         return this.entityManager.createQuery(query, Order.class).getResultList();
     }
 
-    public List<Object[]> findBestSellersTop3 () {
+    public List<BestSellerVo> findBestSellersTop3 () {
 
-        String query =  "SELECT c.name, SUM(om.quantity) FROM Order o " +
+        String query =  "SELECT new br.com.rafaelrosa.restaurant.vo.BestSellerVo(c.name, SUM(om.quantity)) " +
+                        "FROM Order o " +
                         "JOIN OrdersMenuItem om ON o.id = om.order.id " +
                         "JOIN om.menuItem c " +
                         "GROUP BY c.name " +
                         "ORDER BY om.quantity DESC limit 3";
 
-        return this.entityManager.createQuery(query, Object[].class).getResultList();
+        return this.entityManager.createQuery(query, BestSellerVo.class).getResultList();
     }
 }
