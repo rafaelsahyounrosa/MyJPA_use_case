@@ -35,6 +35,11 @@ public class OrderDao {
         return this.entityManager.createQuery(query, Order.class).getResultList();
     }
 
+    public Order joinFetchCustomer(final Integer id) {
+        String query = "SELECT o FROM Order o JOIN FETCH o.customer WHERE o.id = :id";
+        return this.entityManager.createQuery(query, Order.class).setParameter("id", id).getSingleResult();
+    }
+
     public List<BestSellerVo> findBestSellersTop3 () {
 
         String query =  "SELECT new br.com.rafaelrosa.restaurant.vo.BestSellerVo(c.name, SUM(om.quantity)) " +

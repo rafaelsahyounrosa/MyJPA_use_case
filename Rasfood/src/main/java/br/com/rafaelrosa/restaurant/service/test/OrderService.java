@@ -37,10 +37,12 @@ public class OrderService {
 
 
 
-        System.out.println(orderDao.find(1L));
-        System.out.println(order.getTotal());
+        System.out.println(orderDao.joinFetchCustomer(1));
+
 
         em.getTransaction().commit();
         em.close();
+
+        System.out.println(order.getCustomer().getName());
     }
 }
