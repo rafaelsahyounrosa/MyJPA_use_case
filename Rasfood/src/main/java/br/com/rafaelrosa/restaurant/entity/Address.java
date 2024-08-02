@@ -22,7 +22,7 @@ public class Address {
     public Address() {
     }
 
-    public Address(String cep, String complement, String street, String state, String city) {
+    public Address(String cep, String street, String complement, String city, String state) {
         this.cep = cep;
         this.complement = complement;
         this.street = street;
