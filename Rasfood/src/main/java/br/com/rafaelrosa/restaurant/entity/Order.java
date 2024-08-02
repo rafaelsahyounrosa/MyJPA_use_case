@@ -15,7 +15,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private BigDecimal total;
+    private BigDecimal total = BigDecimal.ZERO;
 
     private LocalDateTime date = LocalDateTime.now();
 
@@ -35,6 +35,8 @@ public class Order {
     public void addOrdersMenuItem(OrdersMenuItem ordersMenuItem) {
         ordersMenuItem.setOrder(this);
         this.ordersMenuItems.add(ordersMenuItem);
+
+        this.total =  total.add(ordersMenuItem.getRegisteredPrice().multiply(BigDecimal.valueOf(ordersMenuItem.getQuantity())));
     }
 
     public Integer getId() {

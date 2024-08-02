@@ -29,6 +29,7 @@ public class OrderService {
         rafael.addAddress(address);
         Order order = new Order(rafael);
         order.addOrdersMenuItem(new OrdersMenuItem(menuItemDao.findById(1), 2));
+        order.addOrdersMenuItem(new OrdersMenuItem(menuItemDao.findById(6), 3));
         customerDao.create(rafael);
         orderDao.create(order);
         System.out.println(order);
