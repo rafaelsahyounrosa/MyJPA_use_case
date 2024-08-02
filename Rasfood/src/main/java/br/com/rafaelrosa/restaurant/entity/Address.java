@@ -16,7 +16,7 @@ public class Address {
     private String state;
     private String city;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
 
     public Address() {

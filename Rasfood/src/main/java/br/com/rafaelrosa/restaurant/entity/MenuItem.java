@@ -20,7 +20,7 @@ public class MenuItem {
     @Column(name = "registration_date")
     private LocalDateTime registrationDate = LocalDateTime.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
 //    @ManyToMany(mappedBy = "menuItemList")

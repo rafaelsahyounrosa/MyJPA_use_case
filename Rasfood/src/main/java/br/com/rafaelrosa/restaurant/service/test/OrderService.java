@@ -35,8 +35,10 @@ public class OrderService {
         customerDao.create(rafael);
         orderDao.create(order);
 
-        System.out.println(order);
-        System.out.println(orderDao.findBestSellersTop3());
+
+
+        System.out.println(orderDao.find(1L));
+        System.out.println(order.getTotal());
 
         em.getTransaction().commit();
         em.close();

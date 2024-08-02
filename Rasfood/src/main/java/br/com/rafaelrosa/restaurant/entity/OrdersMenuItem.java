@@ -13,10 +13,10 @@ public class OrdersMenuItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Order order;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private MenuItem menuItem;
 
     @Column(name = "registered_price")
