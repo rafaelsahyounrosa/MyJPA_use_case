@@ -25,7 +25,7 @@ public class OrderService {
         OrderDao orderDao = new OrderDao(em);
 
         Address address = new Address("0000000", "Street XYZ", "None", "Curitiba", "PR");
-        Customer rafael = new Customer("11111111111", "Rafael");
+        Customer rafael = new Customer("11111111111", "Rafael Rosa");
         rafael.addAddress(address);
         Order order = new Order(rafael);
         order.addOrdersMenuItem(new OrdersMenuItem(menuItemDao.findById(1), 2));
@@ -37,12 +37,10 @@ public class OrderService {
 
 
 
-        System.out.println(orderDao.joinFetchCustomer(1));
+        System.out.println(customerDao.findByName("rosa"));
 
 
         em.getTransaction().commit();
         em.close();
-
-        System.out.println(order.getCustomer().getName());
     }
 }

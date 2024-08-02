@@ -33,4 +33,9 @@ public class CustomerDao {
         String query = "SELECT c FROM Customer c";
         return this.entityManager.createQuery(query, Customer.class).getResultList();
     }
+
+    public List<Customer> findByName(final String name) {
+        String query = "SELECT c FROM Customer c WHERE LOWER(c.name) LIKE LOWER(:name)";
+        return this.entityManager.createQuery(query, Customer.class).setParameter("name", "%"+ name +"%").getResultList();
+    }
 }

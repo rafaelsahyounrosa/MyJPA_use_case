@@ -95,7 +95,6 @@ public class Address {
                 ", street='" + street + '\'' +
                 ", state='" + state + '\'' +
                 ", city='" + city + '\'' +
-                ", customer=" + customer +
                 '}';
     }
 }

@@ -56,6 +56,7 @@ public class Customer {
 
     @Override
     public String toString() {
+
         return "Customer{" +
                 "cpf='" + cpf + '\'' +
                 ", name='" + name + '\'' +
