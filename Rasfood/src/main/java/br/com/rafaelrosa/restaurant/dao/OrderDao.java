@@ -34,4 +34,15 @@ public class OrderDao {
         String query = "SELECT o FROM Order o";
         return this.entityManager.createQuery(query, Order.class).getResultList();
     }
+
+    public List<Object[]> findBestSellersTop3 () {
+
+        String query =  "SELECT c.name, SUM(om.quantity) FROM Order o " +
+                        "JOIN OrdersMenuItem om ON o.id = om.order.id " +
+                        "JOIN om.menuItem c " +
+                        "GROUP BY c.name " +
+                        "ORDER BY om.quantity DESC limit 3";
+
+        return this.entityManager.createQuery(query, Object[].class).getResultList();
+    }
 }

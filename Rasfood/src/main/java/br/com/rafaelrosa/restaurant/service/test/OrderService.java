@@ -30,9 +30,14 @@ public class OrderService {
         Order order = new Order(rafael);
         order.addOrdersMenuItem(new OrdersMenuItem(menuItemDao.findById(1), 2));
         order.addOrdersMenuItem(new OrdersMenuItem(menuItemDao.findById(6), 3));
+        order.addOrdersMenuItem(new OrdersMenuItem(menuItemDao.findById(2), 5));
+        order.addOrdersMenuItem(new OrdersMenuItem(menuItemDao.findById(7), 1));
         customerDao.create(rafael);
         orderDao.create(order);
+
         System.out.println(order);
+        orderDao.findBestSellersTop3().forEach(item -> System.out.println("Item: "+item[0]+"\t- Quantity: "+item[1]));
+
         em.getTransaction().commit();
         em.close();
     }
