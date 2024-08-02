@@ -25,9 +25,10 @@ public class OrderService {
 
         Customer rafael = new Customer("11111111111", "Rafael", "11111111");
         Order order = new Order(rafael);
-        order.addOrdersMenuItem(new OrdersMenuItem(order, menuItemDao.findById(1), 2));
+        order.addOrdersMenuItem(new OrdersMenuItem(menuItemDao.findById(1), 2));
         customerDao.create(rafael);
         orderDao.create(order);
+        System.out.println(order.getOrdersMenuItems());
         em.getTransaction().commit();
         em.close();
     }

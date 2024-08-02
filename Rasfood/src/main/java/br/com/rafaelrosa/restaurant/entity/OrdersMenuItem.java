@@ -26,8 +26,7 @@ public class OrdersMenuItem {
     public OrdersMenuItem() {
     }
 
-    public OrdersMenuItem(Order order, MenuItem menuItem, Integer quantity) {
-        this.order = order;
+    public OrdersMenuItem(MenuItem menuItem, Integer quantity) {
         this.menuItem = menuItem;
         this.quantity = quantity;
         this.price = menuItem.getPrice();

@@ -22,13 +22,7 @@ public class Order {
     @ManyToOne
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
-//    Changing implementation strategy: OrdersMenuItem entity
-//    @JoinTable(
-//            name = "orders_menu_item",
-//            joinColumns = @JoinColumn(name = "orders_id"),
-//            inverseJoinColumns = @JoinColumn(name = "menu_item_id")
-//    )
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrdersMenuItem> ordersMenuItems = new ArrayList<>();
 
     public Order(Customer customer) {
@@ -73,6 +67,14 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public List<OrdersMenuItem> getOrdersMenuItems() {
+        return ordersMenuItems;
+    }
+
+    public void setOrdersMenuItems(List<OrdersMenuItem> ordersMenuItems) {
+        this.ordersMenuItems = ordersMenuItems;
     }
 
     @Override
