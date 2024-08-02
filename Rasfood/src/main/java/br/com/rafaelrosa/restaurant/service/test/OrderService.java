@@ -3,6 +3,7 @@ package br.com.rafaelrosa.restaurant.service.test;
 import br.com.rafaelrosa.restaurant.dao.CustomerDao;
 import br.com.rafaelrosa.restaurant.dao.MenuItemDao;
 import br.com.rafaelrosa.restaurant.dao.OrderDao;
+import br.com.rafaelrosa.restaurant.entity.Address;
 import br.com.rafaelrosa.restaurant.entity.Customer;
 import br.com.rafaelrosa.restaurant.entity.Order;
 import br.com.rafaelrosa.restaurant.entity.OrdersMenuItem;
@@ -23,12 +24,14 @@ public class OrderService {
         CustomerDao customerDao = new CustomerDao(em);
         OrderDao orderDao = new OrderDao(em);
 
-        Customer rafael = new Customer("11111111111", "Rafael", "11111111");
+        Address address = new Address("0000000", "Street XYZ", "None", "Curitiba", "PR");
+        Customer rafael = new Customer("11111111111", "Rafael");
+        rafael.addAddress(address);
         Order order = new Order(rafael);
         order.addOrdersMenuItem(new OrdersMenuItem(menuItemDao.findById(1), 2));
         customerDao.create(rafael);
         orderDao.create(order);
-        System.out.println(order.getOrdersMenuItems());
+        System.out.println(order);
         em.getTransaction().commit();
         em.close();
     }

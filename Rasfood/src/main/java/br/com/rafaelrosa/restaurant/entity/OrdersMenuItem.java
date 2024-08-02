@@ -19,7 +19,8 @@ public class OrdersMenuItem {
     @ManyToOne
     private MenuItem menuItem;
 
-    private BigDecimal price;
+    @Column(name = "registered_price")
+    private BigDecimal registeredPrice;
 
     private Integer quantity;
 
@@ -29,7 +30,7 @@ public class OrdersMenuItem {
     public OrdersMenuItem(MenuItem menuItem, Integer quantity) {
         this.menuItem = menuItem;
         this.quantity = quantity;
-        this.price = menuItem.getPrice();
+        this.registeredPrice = menuItem.getPrice();
     }
 
     public Integer getId() {
@@ -56,12 +57,12 @@ public class OrdersMenuItem {
         this.menuItem = menuItem;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal getRegisteredPrice() {
+        return registeredPrice;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setRegisteredPrice(BigDecimal price) {
+        this.registeredPrice = price;
     }
 
     public Integer getQuantity() {
@@ -76,9 +77,8 @@ public class OrdersMenuItem {
     public String toString() {
         return "OrdersMenuItem{" +
                 "id=" + id +
-                ", order=" + order +
                 ", menuItem=" + menuItem +
-                ", price=" + price +
+                ", registeredPrice=" + registeredPrice +
                 ", quantity=" + quantity +
                 '}';
     }

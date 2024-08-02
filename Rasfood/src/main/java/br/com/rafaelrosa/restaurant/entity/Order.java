@@ -83,7 +83,9 @@ public class Order {
                 "id=" + id +
                 ", total=" + total +
                 ", date=" + date +
-                ", customer=" + customer +
+                ", customerName=" + customer.getName() +
+                ", customerCPF=" + customer.getCpf() +
+                ", items=" + getOrdersMenuItems() +
                 '}';
     }
 }

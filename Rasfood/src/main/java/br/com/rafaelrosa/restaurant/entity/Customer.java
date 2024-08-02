@@ -1,9 +1,10 @@
 package br.com.rafaelrosa.restaurant.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -12,15 +13,21 @@ public class Customer {
     @Id
     private String cpf;
     private String name;
-    private String cep;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Address> addressList = new ArrayList<>();
 
     public Customer() {
     }
 
-    public Customer(String cpf, String name, String cep) {
+    public void addAddress(Address address) {
+        address.setCustomer(this);
+        this.addressList.add(address);
+    }
+
+    public Customer(String cpf, String name) {
         this.cpf = cpf;
         this.name = name;
-        this.cep = cep;
     }
 
     public String getCpf() {
@@ -39,12 +46,12 @@ public class Customer {
         this.name = name;
     }
 
-    public String getCep() {
-        return cep;
+    public List<Address> getAddressList() {
+        return addressList;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
     }
 
     @Override
@@ -52,7 +59,7 @@ public class Customer {
         return "Customer{" +
                 "cpf='" + cpf + '\'' +
                 ", name='" + name + '\'' +
-                ", cep='" + cep + '\'' +
+                ", addressList=" + addressList +
                 '}';
     }
 }
