@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "menu_item")
@@ -19,8 +20,11 @@ public class MenuItem {
     @Column(name = "registration_date")
     private LocalDateTime registrationDate = LocalDateTime.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
+
+//    @ManyToMany(mappedBy = "menuItemList")
+//    private List<Order> orders;
 
     public MenuItem() {
     }
