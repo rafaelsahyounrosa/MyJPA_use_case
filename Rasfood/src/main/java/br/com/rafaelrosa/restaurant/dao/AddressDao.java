@@ -4,6 +4,10 @@ import br.com.rafaelrosa.restaurant.entity.Address;
 import br.com.rafaelrosa.restaurant.vo.CustomerVo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 
 import java.util.List;
 import java.util.Objects;
@@ -64,5 +68,28 @@ public class AddressDao {
         }
 
         return  typedQuery.getResultList();
+    }
+
+
+    public List<CustomerVo> findCustomersByAddressWithCriteria(final String state, final String city, final String street) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<CustomerVo> cq = cb.createQuery(CustomerVo.class);
+
+        Root<Address> root = cq.from(Address.class);
+        cq.multiselect(root.get("customer").get("cpf"), root.get("customer").get("name"));
+        Predicate predicate = cb.and();
+
+        if(Objects.nonNull(state)){
+            predicate = cb.and(predicate, cb.equal(cb.upper(root.get("state")), state.toUpperCase()));
+        }
+        if(Objects.nonNull(city)){
+            predicate = cb.and(predicate, cb.equal(cb.upper(root.get("city")), city.toUpperCase()));
+        }
+        if(Objects.nonNull(street)){
+            predicate = cb.and(predicate, cb.equal(cb.upper(root.get("street")), street.toUpperCase()));
+        }
+
+        cq.where(predicate);
+        return entityManager.createQuery(cq).getResultList();
     }
 }
