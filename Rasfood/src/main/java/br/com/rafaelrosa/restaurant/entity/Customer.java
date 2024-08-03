@@ -10,8 +10,8 @@ import java.util.List;
 @Table(name = "customers")
 public class Customer {
 
-    @Id
-    private String cpf;
+    @EmbeddedId
+    private CustomerId customerId;
     private String name;
 
     @Embedded
@@ -28,17 +28,25 @@ public class Customer {
         this.addressList.add(address);
     }
 
-    public Customer(String cpf, String name) {
-        this.cpf = cpf;
+    public Customer(String cpf, String login, String name) {
+        this.customerId = new CustomerId(login, cpf);
         this.name = name;
     }
 
     public String getCpf() {
-        return cpf;
+        return customerId.getCpf();
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.customerId.setCpf(cpf);
+    }
+
+    public String getLogin() {
+        return customerId.getLogin();
+    }
+
+    public void setLogin(String login) {
+        this.customerId.setLogin(login);
     }
 
     public String getName() {
@@ -80,7 +88,8 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "cpf='" + cpf + '\'' +
+                "cpf='" + customerId.getCpf() + '\'' +
+                ", login='" + customerId.getLogin() + '\'' +
                 ", name='" + name + '\'' +
                 ", contact=" + contact +
                 ", addressList=" + addressList +

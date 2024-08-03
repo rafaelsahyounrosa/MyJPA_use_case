@@ -42,7 +42,7 @@ public class AddressDao {
     }
 
     public List<CustomerVo> findCustomersByAddress(final String state, final String city, final String street) {
-        String query = "SELECT new br.com.rafaelrosa.restaurant.vo.CustomerVo(a.customer.cpf, a.customer.name) " +
+        String query = "SELECT new br.com.rafaelrosa.restaurant.vo.CustomerVo(a.customer.customerId.cpf, a.customer.name) " +
                 "FROM Address a WHERE 1=1 ";
 
         if(Objects.nonNull(state)){
@@ -76,7 +76,7 @@ public class AddressDao {
         CriteriaQuery<CustomerVo> cq = cb.createQuery(CustomerVo.class);
 
         Root<Address> root = cq.from(Address.class);
-        cq.multiselect(root.get("customer").get("cpf"), root.get("customer").get("name"));
+        cq.multiselect(root.get("customer").get("customerId").get("cpf"), root.get("customer").get("customerId").get("name"));
         Predicate predicate = cb.and();
 
         if(Objects.nonNull(state)){

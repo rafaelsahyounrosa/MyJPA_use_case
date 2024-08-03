@@ -4,10 +4,7 @@ import br.com.rafaelrosa.restaurant.dao.AddressDao;
 import br.com.rafaelrosa.restaurant.dao.CustomerDao;
 import br.com.rafaelrosa.restaurant.dao.MenuItemDao;
 import br.com.rafaelrosa.restaurant.dao.OrderDao;
-import br.com.rafaelrosa.restaurant.entity.Address;
-import br.com.rafaelrosa.restaurant.entity.Customer;
-import br.com.rafaelrosa.restaurant.entity.Order;
-import br.com.rafaelrosa.restaurant.entity.OrdersMenuItem;
+import br.com.rafaelrosa.restaurant.entity.*;
 import br.com.rafaelrosa.restaurant.util.DataUtil;
 import br.com.rafaelrosa.restaurant.util.JPAutil;
 import jakarta.persistence.EntityManager;
@@ -30,9 +27,9 @@ public class OrderService {
         Address address2 = new Address("0000001", "Street XYZ", "None", "Curitiba", "PR");
         Address address3 = new Address("0000002", "Street XZ", "None", "Rio de Janeiro", "RJ");
 
-        Customer rafael = new Customer("11111111111", "Rafael Rosa");
-        Customer yasminn = new Customer("11111111112", "Yasminn Canella");
-        Customer leonardo = new Customer("11111111113", "Leonardo Rosa");
+        Customer rafael = new Customer("11111111111", "rafael", "Rafael Rosa");
+        Customer yasminn = new Customer("11111111112", "yasminn", "Yasminn Canella");
+        Customer leonardo = new Customer("11111111113","leonardo", "Leonardo Rosa");
 
         rafael.addAddress(address);
         yasminn.addAddress(address2);
@@ -58,7 +55,7 @@ public class OrderService {
 
 
 
-        System.out.println(customerDao.findAll());
+        System.out.println(customerDao.findById(new CustomerId("rafael", "11111111111")));
 
 
         em.getTransaction().commit();

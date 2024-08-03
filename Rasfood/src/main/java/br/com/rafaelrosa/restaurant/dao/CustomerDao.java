@@ -1,6 +1,7 @@
 package br.com.rafaelrosa.restaurant.dao;
 
 import br.com.rafaelrosa.restaurant.entity.Customer;
+import br.com.rafaelrosa.restaurant.entity.CustomerId;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class CustomerDao {
         this.entityManager.persist(customer);
     }
 
-    public Customer find(final Long id) {
+    public Customer findById(final CustomerId id) {
         return this.entityManager.find(Customer.class, id);
     }
 
