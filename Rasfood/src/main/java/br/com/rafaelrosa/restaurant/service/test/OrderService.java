@@ -58,7 +58,7 @@ public class OrderService {
 
 
 
-        System.out.println(addressDao.findCustomersByAddress("pr", "curitiba", "street xyz"));
+        System.out.println(addressDao.findCustomersByAddress(null, null, null));
 
 
         em.getTransaction().commit();
